@@ -1,0 +1,39 @@
+<project name="Freenect" default="jar-jna" basedir=".">
+
+    <!--Directories-->
+    <property name="jars.dir" value="${basedir}/jars"/>
+    <property name="lib.dir" value="${basedir}/lib.dir"/>
+    <property name="src.dir" value="${basedir}/src/main/java"/>
+    <property name="target.dir" value="${basedir}/target"/>
+    <property name="temp.dir" value="${basedir}/tmpjar"/>
+
+    <!--Files-->
+    <property name="freenect.jar" value="${jars.dir}/freenect-jna.jar"/>
+    <property name="jna.jar" value="${jars.dir}/jna.jar"/>
+
+    <target name="pre-clean">
+        <delete dir="${temp.dir}" quiet="true"/>
+        <delete file="${freenect.jar}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${temp.dir}">
+            <classpath>
+                <pathelement location="${jna.jar}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="init" depends="pre-clean">
+        <mkdir dir="${temp.dir}"/>
+    </target>
+
+    <target name="jar-jna" depends="compile">
+        <jar basedir="${temp.dir}" jarfile="${freenect.jar}"/>
+    </target>
+
+    <target name="post-clean">
+        <delete dir="${temp.dir}" quiet="true"/>
+    </target>
+    
+</project>
