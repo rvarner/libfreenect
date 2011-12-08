@@ -186,7 +186,7 @@ public class Freenect implements Library {
 
         @Override
         public void setDepthFormat(DepthFormat fmt) {
-            freenect_set_depth_format(this, fmt.intValue());
+            freenect_set_depth_mode(this, fmt.intValue());
             depthBuffer = ByteBuffer.allocateDirect(fmt.getFrameSize());
             freenect_set_depth_buffer(this, depthBuffer);
             this.depthFormat = fmt;
@@ -194,7 +194,7 @@ public class Freenect implements Library {
 
         @Override
         public void setVideoFormat(VideoFormat fmt) {
-            freenect_set_video_format(this, fmt.intValue());
+            freenect_set_video_mode(this, fmt.intValue());
             videoBuffer = ByteBuffer.allocateDirect(fmt.getFrameSize());
             freenect_set_video_buffer(this, videoBuffer);
             this.videoFormat = fmt;
@@ -321,8 +321,8 @@ public class Freenect implements Library {
     private static native Pointer freenect_get_user(NativeDevice dev);
     private static native void freenect_set_depth_callback(NativeDevice dev, NativeDepthCallback cb);
     private static native void freenect_set_video_callback(NativeDevice dev, NativeVideoCallback cb);
-    private static native int freenect_set_depth_format(NativeDevice dev, int i);
-    private static native int freenect_set_video_format(NativeDevice dev, int i);
+    private static native int freenect_set_depth_mode(NativeDevice dev, int i);
+    private static native int freenect_set_video_mode(NativeDevice dev, int i);
     private static native int freenect_set_depth_buffer(NativeDevice dev, ByteBuffer buf);
     private static native int freenect_set_video_buffer(NativeDevice dev, ByteBuffer buf);
     private static native int freenect_start_depth(NativeDevice dev);
