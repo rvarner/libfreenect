@@ -15,8 +15,8 @@ import com.sun.jna.ptr.PointerByReference;
 public class Freenect implements Library {
     static {
         try {
-            NativeLibrary.addSearchPath("freenect", "../../build/lib");
-            NativeLibrary.addSearchPath("freenect", "/usr/local/lib");
+            NativeLibrary.addSearchPath("libfreenect", "../../build/lib");
+            NativeLibrary.addSearchPath("libfreenect", "/usr/local/lib");
             NativeLibrary instance = NativeLibrary.getInstance("freenect");
             System.err.println("Loaded " + instance.getName() + " from " + instance.getFile().getCanonicalPath());
             Native.register(instance);
