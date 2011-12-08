@@ -18,6 +18,7 @@
 
     <target name="compile" depends="init">
         <javac srcdir="${src.dir}" destdir="${temp.dir}">
+
             <classpath>
                 <pathelement location="${jna.jar}"/>
             </classpath>
